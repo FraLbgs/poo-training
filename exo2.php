@@ -1,3 +1,8 @@
+<?php
+spl_autoload_register();
+use App\Objects\Teacher;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +41,10 @@
                 Créer 2 professeurs différents.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $prof1 = new Teacher("Jones", "Indiana", ["histoire", "art"], "Université du Havre");
+                $prof2 = new Teacher("Spears", "Britney", ["musique", "danse"], "Geaorge Sand");
+                ?>
             </div>
         </section>
         
@@ -52,7 +60,14 @@
                 Afficher les écoles des 2 professeurs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo "<pre>Indiana : ".$prof1->getSchool().".</pre>";
+                echo "<pre>Britney : ".$prof2->getSchool().".</pre>";
+                $prof1->setSchool("Afpa du Havre");
+                $prof2->setSchool("Porte Océane");
+                echo "<pre>Indiana après modif : ".$prof1->getSchool().".</pre>";
+                echo "<pre>Britney après modif : ".$prof2->getSchool().".</pre>";
+                ?>
             </div>
         </section>
         
@@ -66,7 +81,18 @@
                 Tester l'ajout, la suppression et l'affichage sur chacun des profs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo "<pre>Indiana : ".$prof1->displayCourses().".</pre>";
+                echo "<pre>Britney : ".$prof2->displayCourses().".</pre>";
+                $prof1->addCourse("littérature");
+                $prof2->addCourse("chant");
+                echo "<pre>Indiana après ajout : ".$prof1->displayCourses().".</pre>";
+                echo "<pre>Britney après ajout : ".$prof2->displayCourses().".</pre>";
+                $prof1->deleteCourse("art");
+                $prof2->deleteCourse("danse");
+                echo "<pre>Indiana après suppression : ".$prof1->displayCourses().".</pre>";
+                echo "<pre>Britney après supression : ".$prof2->displayCourses().".</pre>";
+                ?>
             </div>
         </section>
 
@@ -81,7 +107,10 @@
                 Afficher la phrase de présentation des 2 profs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                    echo $prof1->introduceMYSelf()."<br>";
+                    echo $prof2->introduceMYSelf();
+                ?>
             </div>
         </section>
 

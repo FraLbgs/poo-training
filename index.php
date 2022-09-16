@@ -1,3 +1,9 @@
+<?php
+spl_autoload_register();
+use App\Objects\Student;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +42,10 @@
                 Créer 2 étudiants différents.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $harry = new Student("Covert", "Harry", new DateTime("2012/06/24"), "première", "George Sand");
+                $aude = new Student("Javel", "Aude", new DateTime("2000/11/06"), "Licence 3", "Université du Havre");
+                ?>
             </div>
         </section>
         
@@ -49,7 +58,16 @@
                 Modifier le niveau scolaire des 2 élèves et les afficher.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo "<pre>Harry : ".$harry->getGrade().".</pre>";
+                echo "<pre>Aude : ".$aude->getGrade().".</pre>";
+            
+                $harry->setGrade("CM2");
+                $aude->setGrade("Master 1");
+            
+                echo "<pre>Harry après modif : ".$harry->getGrade().".</pre>";
+                echo "<pre>Aude après modif : ".$aude->getGrade().".</pre>";
+                ?>
             </div>
         </section>
         
@@ -62,7 +80,10 @@
                 Mettez à jour l'instanciation des 2 élèves et afficher leur date de naissance.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo "<pre>"; var_dump($harry->getBirthdate()->format("d-m-Y")); echo "</pre>";
+                echo "<pre>"; var_dump($aude->getBirthdate()->format("d-m-Y")); echo "</pre>";
+                ?>
             </div>
         </section>
         
@@ -75,7 +96,10 @@
                 Afficher l'âge des 2 élèves.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo "<pre>"; var_dump($harry->getAge()); echo "</pre>";
+                echo "<pre>"; var_dump($aude->getAge()); echo "</pre>";
+                ?>
             </div>
         </section>
         
@@ -88,7 +112,8 @@
                 Ajouter la propriété et ajouter la donnée sur les élèves.
             </p>
             <div class="exercice-sandbox">
-                
+            <?php
+                ?>
             </div>
         </section>
         
@@ -102,7 +127,10 @@
                 Afficher la phrase de présentation des 2 élèves.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                echo $harry->introduceMYSelf()."<br>";
+                echo $aude->introduceMYSelf();
+                ?>
             </div>
         </section>
 
