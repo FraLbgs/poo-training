@@ -11,27 +11,28 @@ namespace App\Objects;
             $this->courses = $courses;
         }
         
-        public function getCourses(): array{
+        public function getCourses() :array {
             return $this->courses;
         }
 
-        public function setCourses(array $courses): void{
+        public function setCourses(array $courses) :void {
             $this->courses = $courses;
         }
 
-        public function addCourse(string $course): void{
+        public function addCourse(string $course) :void {
+            if(in_array($course, $this->courses)) return;
             $this->courses[] = $course;
         }
 
-         public function deleteCourse(string $courses): void{
-            unset($this->courses[array_search($courses, $this->courses)]);
+         public function deleteCourse(string $course) :void {
+            unset($this->courses[array_search($course, $this->courses)]);
         }
 
-        public function displayCourses(){
+        public function displayCourses() :string {
             return implode(", ", $this->courses);
         }
 
-        public function introduceMYSelf(): string{
+        public function introduceMYSelf() :string {
             return "Bonjour, je m'appelle ".$this->getFirstname()." ".$this->getLastname()." et j'enseigne à l'école ".$this->getSchool()." les matières suivantes : ".$this->displayCourses().".";
         }
 

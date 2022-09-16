@@ -1,3 +1,12 @@
+<?php
+spl_autoload_register();
+use App\Objects\School;
+use App\Objects\PrimarySchool;
+use App\Objects\MiddleSchool;
+use App\Objects\HighSchool;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +43,12 @@
                 Créer 2 écoles et afficher leurs proprités.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                // $school1 = new School("George Sand", "Le Havre");
+                // $school2 = new School("François 1er", "Paris");
+                // echo "Nom école 1 : ".$school1->getName().", ville : ".$school1->getCity().".<br>";
+                // echo "Nom école 2 : ".$school2->getName().", ville : ".$school2->getCity().".";
+                ?>
             </div>
         </section>
         
@@ -50,7 +64,12 @@
                 Créer une école de chaque type.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                    $ps = new PrimarySchool("George Sand", "Le Havre");
+                    $ms = new MiddleSchool("Gérard Philippe", "Strasbourg");
+                    $hs = new HighSchool("François 1er", "Paris");
+                    var_dump($ps->getGrades());
+                ?>
             </div>
         </section>
 
@@ -64,7 +83,11 @@
                 Tester la méthode créée.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                var_dump($ps->isGradeInSchool("5ème"));
+                var_dump($ms->isGradeInSchool("5ème"));
+                var_dump($hs->isGradeInSchool("5ème"));
+                ?>
             </div>
         </section>
 
@@ -72,7 +95,7 @@
         <section class="exercice">
             <h2 class="exercice-ttl">Question 4</h2>
             <p class="exercice-txt"> 
-                Remplacer les propriétés "école" des élèves et des professeurs par la classe créée.
+                Remplacer les propriétés "école" des élèves et des professeurs par une instance de classe créée. (string devient ecole)
                 <br>
                 Ajuster le code de toutes les classes afin que tous les exercices précédents fonctionnent à nouveau.
             </p>
