@@ -1,3 +1,9 @@
+<?php
+spl_autoload_register();
+use App\Objects\Template;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +74,8 @@
                 
             </div>
         </section>
-    </div>
+
+        </div>
     <div class="copyright">© Guillaume Belleuvre, 2022 - DWWM Le Havre</div>
 </body>
 </html>

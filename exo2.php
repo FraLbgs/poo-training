@@ -1,125 +1,108 @@
 <?php
+
 spl_autoload_register();
-use App\Objects\PrimarySchool;
-use App\Objects\MiddleSchool;
-use App\Objects\HighSchool;
+use App\Objects\Template;
 use App\Objects\Teacher;
-?>
+use App\Objects\HighSchool;
+use App\Objects\MiddleSchool;
 
-<!DOCTYPE html>
-<html lang="en">
+$prof1 = new Teacher("Jones", "Indiana", ["histoire", "art"], new HighSchool("Porte Océane", "paris"));
+$prof2 = new Teacher("Spears", "Britney", ["musique", "danse"], new MiddleSchool("Raoul Dufy", "Strasbourg"));
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>POO - Des professeurs</title>
-</head>
+$page2 = new Template("layout.html");
+$question1 = new Template("question.html");
+$content = '';
 
-<body class="dark-template">
-    <div class="container">
-        <header class="header">
-            <h1 class="main-ttl">POO - Des professeurs</h1>
-            <nav class="main-nav">
-                <ul class="main-nav-list">
-                    <li><a href="index.php" class="main-nav-link">Des élèves</a></li>
-                    <li><a href="exo2.php" class="main-nav-link active">Des profs</a></li>
-                    <li><a href="exo3.php" class="main-nav-link">On s'organise</a></li>
-                    <li><a href="exo4.php" class="main-nav-link">Des écoles</a></li>
-                    <li><a href="exo5.php" class="main-nav-link">Des vues</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <!-- QUESTION 1 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 1</h2>
-            <p class="exercice-txt">
-                Créer une classe permettant de créer des professeurs ayant un nom, un prénom, une liste des matières qu'il enseigne et le nom de l'école où il enseigne.
-                <br>
-                Définir toutes les propriétés à l'instanciation en rendant la liste des matières et le nom de lécole faculative.
-                <br>
-                Créer 2 professeurs différents.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                $prof1 = new Teacher("Jones", "Indiana", ["histoire", "art"], new HighSchool("Porte Océane", "paris"));
-                $prof2 = new Teacher("Spears", "Britney", ["musique", "danse"], new MiddleSchool("Raoul Dufy", "Strasbourg"));
-                $prof3 = new Teacher("hgfdhs", "rhresh", ["musique", "danse"]);
+$datasQ1 = [
+    'num' => 1,
+    'enonce' => 'Créer une classe permettant de créer des professeurs ayant un nom, un prénom, une liste des matières qu\'il enseigne et le nom de l\'école où il enseigne.
+    <br>
+    Définir toutes les propriétés à l\'instanciation en rendant la liste des matières et le nom de lécole faculative.
+    <br>
+    Créer 2 professeurs différents.',
+    'answer' => ''
+];
 
-                ?>
-            </div>
-        </section>
-        
-        
-        <!-- QUESTION 2 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 2</h2>
-            <p class="exercice-txt">
-                Créer les getters et les setters permettant de gérer toutes les propriétés des professeurs.
-                <br>
-                Modifier les écoles des 2 professeurs.
-                <br>
-                Afficher les écoles des 2 professeurs.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                echo "<pre>Indiana : ".$prof1->getSchool()->getName().".</pre>";
-                echo "<pre>Britney : ".$prof2->getSchool()->getName().".</pre>";
-                $prof1->setSchool(new HighSchool("François 1er", "paris"));
-                $prof2->setSchool(new MiddleSchool("Gérard Philippe", "Strasbourg"));
-                echo "<pre>Indiana après modif : ".$prof1->getSchool()->getName().".</pre>";
-                echo "<pre>Britney après modif : ".$prof2->getSchool()->getName().".</pre>";
-                ?>
-            </div>
-        </section>
-        
-        
-        <!-- QUESTION 3 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 3</h2>
-            <p class="exercice-txt">
-                Créer les méthodes permettant d'ajouter une matière, de retirer une matière et d'afficher la liste des matières d'un prof.
-                <br>
-                Tester l'ajout, la suppression et l'affichage sur chacun des profs.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                echo "<pre>Indiana : ".$prof1->displayCourses().".</pre>";
-                echo "<pre>Britney : ".$prof2->displayCourses().".</pre>";
-                $prof1->addCourse("littérature");
-                $prof2->addCourse("chant");
-                echo "<pre>Indiana après ajout : ".$prof1->displayCourses().".</pre>";
-                echo "<pre>Britney après ajout : ".$prof2->displayCourses().".</pre>";
-                $prof1->deleteCourse("art");
-                $prof2->deleteCourse("danse");
-                echo "<pre>Indiana après suppression : ".$prof1->displayCourses().".</pre>";
-                echo "<pre>Britney après supression : ".$prof2->displayCourses().".</pre>";
-                ?>
-            </div>
-        </section>
+$content.=$question1->buildLayout($datasQ1);
 
+/*******************************************************/
 
-        <!-- QUESTION 4 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 4</h2>
-            <p class="exercice-txt">
-                Donner la possibilité aux professeurs de se présenter en affichant la phrase suivante :<br>
-                "Bonjour, je m'appelle XXX XXX et j'enseigne à l'école XXX les matières suivantes : XXX, XXX, XXX.".
-                <br>
-                Afficher la phrase de présentation des 2 profs.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                    echo $prof1->introduceMYSelf()."<br>";
-                    echo $prof2->introduceMYSelf();
-                ?>
-            </div>
-        </section>
+$question2 = new Template("question.html");
 
-    </div>
-    <div class="copyright">© Guillaume Belleuvre, 2022 - DWWM Le Havre</div>
-</body>
-</html>
+$datasQ2 = [
+    'num' => 2,
+    'enonce' => 'Créer les getters et les setters permettant de gérer toutes les propriétés des professeurs.
+    <br>
+    Modifier les écoles des 2 professeurs.
+    <br>
+    Afficher les écoles des 2 professeurs.',
+    'answer' => "<pre>Indiana : ".$prof1->getSchool()->getName().".</pre>
+    <pre>Britney : ".$prof2->getSchool()->getName().".</pre>"
+];
+
+$prof1->setSchool(new HighSchool("François 1er", "paris"));
+$prof2->setSchool(new MiddleSchool("Gérard Philippe", "Strasbourg"));
+
+$datasQ2['answer'].="<pre>Indiana après modif : ".$prof1->getSchool()->getName().".</pre>
+<pre>Britney après modif : ".$prof2->getSchool()->getName().".</pre>";
+
+$content.=$question2->buildLayout($datasQ2);
+
+// /*******************************************************/
+
+$question3 = new Template("question.html");
+
+$datasQ3 = [
+    'num' => 3,
+    'enonce' => 'Créer les méthodes permettant d\'ajouter une matière, de retirer une matière et d\'afficher la liste des matières d\'un prof.
+    <br>
+    Tester l\'ajout, la suppression et l\'affichage sur chacun des profs.',
+    'answer' => "<pre>Indiana : ".$prof1->displayCourses().".</pre>
+    <pre>Britney : ".$prof2->displayCourses().".</pre>"
+];
+
+$prof1->addCourse("littérature");
+$prof2->addCourse("chant");
+
+$datasQ3['answer'].="<pre>Indiana après ajout : ".$prof1->displayCourses().".</pre>
+<pre>Britney après ajout : ".$prof2->displayCourses().".</pre>";
+
+$prof1->deleteCourse("art");
+$prof2->deleteCourse("danse");
+
+$datasQ3['answer'].="<pre>Indiana après suppression : ".$prof1->displayCourses().".</pre>
+<pre>Britney après supression : ".$prof2->displayCourses().".</pre>";
+
+$content.=$question3->buildLayout($datasQ3);
+
+/*******************************************************/
+
+$question4 = new Template("question.html");
+
+$datasQ4 = [
+    'num' => 4,
+    'enonce' => 'Donner la possibilité aux professeurs de se présenter en affichant la phrase suivante :<br>
+    "Bonjour, je m\'appelle XXX XXX et j\'enseigne à l\'école XXX les matières suivantes : XXX, XXX, XXX.".
+    <br>
+    Afficher la phrase de présentation des 2 profs.',
+    'answer' => $prof1->introduceMYSelf()."<br>".$prof2->introduceMYSelf()
+];
+
+$content.=$question4->buildLayout($datasQ4);
+
+/*******************************************************/
+
+$datasL = [
+    'title' => 'POO - Des professeurs',
+    'h1' => 'POO - Des professeurs',
+    'active1' => '',
+    'active2' => 'active',
+    'active3' => '',
+    'active4' => '',
+    'active5' => '',
+    'content' => $content
+];
+
+$page2->setDatas($datasL);
+echo $page2->buildLayout($datasL);
+
