@@ -6,7 +6,7 @@ namespace App\Objects;
 
         private array $courses;
 
-        public function __construct(string $lastname, string $firstname, array $courses = [], string $school = ""){
+        public function __construct(string $lastname, string $firstname, array $courses = [], ?School $school = null){
             parent::__construct($lastname, $firstname, $school);
             $this->courses = $courses;
         }
@@ -33,7 +33,7 @@ namespace App\Objects;
         }
 
         public function introduceMYSelf() :string {
-            return "Bonjour, je m'appelle ".$this->getFirstname()." ".$this->getLastname()." et j'enseigne à l'école ".$this->getSchool()." les matières suivantes : ".$this->displayCourses().".";
+            return "Bonjour, je m'appelle ".$this->getFirstname()." ".$this->getLastname()." et j'enseigne à l'école ".$this->getSchool()->getName()." les matières suivantes : ".$this->displayCourses().".";
         }
 
     }

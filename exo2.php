@@ -1,5 +1,8 @@
 <?php
 spl_autoload_register();
+use App\Objects\PrimarySchool;
+use App\Objects\MiddleSchool;
+use App\Objects\HighSchool;
 use App\Objects\Teacher;
 ?>
 
@@ -42,8 +45,10 @@ use App\Objects\Teacher;
             </p>
             <div class="exercice-sandbox">
                 <?php
-                $prof1 = new Teacher("Jones", "Indiana", ["histoire", "art"], "Université du Havre");
-                $prof2 = new Teacher("Spears", "Britney", ["musique", "danse"], "Geaorge Sand");
+                $prof1 = new Teacher("Jones", "Indiana", ["histoire", "art"], new HighSchool("Porte Océane", "paris"));
+                $prof2 = new Teacher("Spears", "Britney", ["musique", "danse"], new MiddleSchool("Raoul Dufy", "Strasbourg"));
+                $prof3 = new Teacher("hgfdhs", "rhresh", ["musique", "danse"]);
+
                 ?>
             </div>
         </section>
@@ -61,12 +66,12 @@ use App\Objects\Teacher;
             </p>
             <div class="exercice-sandbox">
                 <?php
-                echo "<pre>Indiana : ".$prof1->getSchool().".</pre>";
-                echo "<pre>Britney : ".$prof2->getSchool().".</pre>";
-                $prof1->setSchool("Afpa du Havre");
-                $prof2->setSchool("Porte Océane");
-                echo "<pre>Indiana après modif : ".$prof1->getSchool().".</pre>";
-                echo "<pre>Britney après modif : ".$prof2->getSchool().".</pre>";
+                echo "<pre>Indiana : ".$prof1->getSchool()->getName().".</pre>";
+                echo "<pre>Britney : ".$prof2->getSchool()->getName().".</pre>";
+                $prof1->setSchool(new HighSchool("François 1er", "paris"));
+                $prof2->setSchool(new MiddleSchool("Gérard Philippe", "Strasbourg"));
+                echo "<pre>Indiana après modif : ".$prof1->getSchool()->getName().".</pre>";
+                echo "<pre>Britney après modif : ".$prof2->getSchool()->getName().".</pre>";
                 ?>
             </div>
         </section>

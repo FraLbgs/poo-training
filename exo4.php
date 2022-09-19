@@ -84,9 +84,9 @@ use App\Objects\HighSchool;
             </p>
             <div class="exercice-sandbox">
                 <?php
-                var_dump($ps->isGradeInSchool("5ème"));
-                var_dump($ms->isGradeInSchool("5ème"));
-                var_dump($hs->isGradeInSchool("5ème"));
+                echo ($ps->isGradeInSchool("5ème"));
+                echo ($ms->isGradeInSchool("5ème"));
+                echo ($hs->isGradeInSchool("5ème"));
                 ?>
             </div>
         </section>

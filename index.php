@@ -1,5 +1,9 @@
 <?php
 spl_autoload_register();
+
+use App\Objects\PrimarySchool;
+use App\Objects\MiddleSchool;
+use App\Objects\HighSchool;
 use App\Objects\Student;
 ?>
 
@@ -43,8 +47,8 @@ use App\Objects\Student;
             </p>
             <div class="exercice-sandbox">
                 <?php
-                $harry = new Student("Covert", "Harry", new DateTime("2012/06/24"), "première", "George Sand");
-                $aude = new Student("Javel", "Aude", new DateTime("2000/11/06"), "Licence 3", "Université du Havre");
+                $harry = new Student("Covert", "Harry", new DateTime("2012/06/24"), "première", new MiddleSchool("George Sand", "Le Havre"));
+                $aude = new Student("Javel", "Aude", new DateTime("2000/11/06"), "Licence 3", new HighSchool("François 1er", "Paris"));
                 ?>
             </div>
         </section>
@@ -62,8 +66,8 @@ use App\Objects\Student;
                 echo "<pre>Harry : ".$harry->getGrade().".</pre>";
                 echo "<pre>Aude : ".$aude->getGrade().".</pre>";
             
-                $harry->setGrade("CM2");
-                $aude->setGrade("Master 1");
+                $harry->setGrade("6ème");
+                $aude->setGrade("Première");
             
                 echo "<pre>Harry après modif : ".$harry->getGrade().".</pre>";
                 echo "<pre>Aude après modif : ".$aude->getGrade().".</pre>";

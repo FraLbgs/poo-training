@@ -9,7 +9,7 @@
         private DateTime $birthDate;
         private string $grade;
 
-        public function __construct(string $lastname, string $firstname, DateTime $birthDate, string $grade, string $school){
+        public function __construct(string $lastname, string $firstname, DateTime $birthDate, string $grade, School $school){
             parent::__construct($lastname, $firstname, $school);
             $this->birthDate = $birthDate;
             $this->grade = $grade;
@@ -40,7 +40,7 @@
             $this->getFirstname()." ".
             $this->getLastname().
             ", j'ai ".$this->getAge()." ans et je vais à l'école ".
-            $this->getSchool()." en classe de ".
+            $this->getSchool()->getName()." en classe de ".
             $this->getGrade().".";
         }
     }
