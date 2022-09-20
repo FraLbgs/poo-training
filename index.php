@@ -6,11 +6,17 @@ use App\Objects\HighSchool;
 use App\Objects\MiddleSchool;
 use App\Views\Page;
 use App\Views\Question;
+use App\Views\Menu;
+
+require_once "includes/_menu.php";
 
 $harry = new Student("Covert", "Harry", new DateTime("2012/06/24"), "première", new MiddleSchool("George Sand", "Le Havre"));
 $aude = new Student("Javel", "Aude", new DateTime("2000/11/06"), "Licence 3", new HighSchool("François 1er", "Paris"));
 
 $content = '';
+
+$menuLi = new Menu();
+$menu = $menuLi->getMainNavigation($liList, 1);
 
 $question1 = new Question([
     'num' => 1,
@@ -101,11 +107,7 @@ $content.=$question6->getHtml();
 $page1 = new Page([
     'title' => 'POO - Des élèves',
     'h1' => 'Programmation Orientée Objet - Des élèves',
-    'active1' => 'active',
-    'active2' => '',
-    'active3' => '',
-    'active4' => '',
-    'active5' => '',
+    'menu' => $menu,
     'content' => $content
 ]);
 

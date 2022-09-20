@@ -6,11 +6,17 @@ use App\Views\Question;
 use App\Objects\Teacher;
 use App\Objects\HighSchool;
 use App\Objects\MiddleSchool;
+use App\Views\Menu;
+
+require_once "includes/_menu.php";
 
 $prof1 = new Teacher("Jones", "Indiana", ["histoire", "art"], new HighSchool("Porte Océane", "paris"));
 $prof2 = new Teacher("Spears", "Britney", ["musique", "danse"], new MiddleSchool("Raoul Dufy", "Strasbourg"));
 
 $content = '';
+
+$menuLi = new Menu();
+$menu = $menuLi->getMainNavigation($liList, 2);
 
 $question1 = new Question([
     'num' => 1,
@@ -88,11 +94,7 @@ $content.=$question4->getHtml();
 $page2 = new Page([
     'title' => 'POO - Des professeurs',
     'h1' => 'POO - Des professeurs',
-    'active1' => '',
-    'active2' => 'active',
-    'active3' => '',
-    'active4' => '',
-    'active5' => '',
+    'menu' => $menu,
     'content' => $content
 ]);
 

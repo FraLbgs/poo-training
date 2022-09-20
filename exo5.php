@@ -3,8 +3,14 @@
 spl_autoload_register();
 use App\Views\Page;
 use App\Views\Question;
+use App\Views\Menu;
+
+require_once "includes/_menu.php";
 
 $content = '';
+
+$menuLi = new Menu();
+$menu = $menuLi->getMainNavigation($liList, 5);
 
 $question1 = new Question([
     'num' => 1,
@@ -49,11 +55,7 @@ $content.=$question4->getHtml();
 $page5 = new Page([
     'title' => 'POO - Des vues',
     'h1' => 'POO - Des vues',
-    'active1' => '',
-    'active2' => '',
-    'active3' => '',
-    'active4' => '',
-    'active5' => 'active',
+    'menu' => $menu,
     'content' => $content
 ]);
 

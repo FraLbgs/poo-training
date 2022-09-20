@@ -7,9 +7,14 @@ use App\Objects\School;
 use App\Objects\PrimarySchool;
 use App\Objects\MiddleSchool;
 use App\Objects\HighSchool;
+use App\Views\Menu;
+
+require_once "includes/_menu.php";
 
 $content = '';
 
+$menuLi = new Menu();
+$menu = $menuLi->getMainNavigation($liList, 4);
 
 $school1 = new School("George Sand", "Le Havre");
 $school2 = new School("François 1er", "Paris");
@@ -74,11 +79,7 @@ $content.=$question4->getHtml();
 $page4 = new Page([
     'title' => 'POO - Des écoles',
     'h1' => 'POO - Des écoles',
-    'active1' => '',
-    'active2' => '',
-    'active3' => '',
-    'active4' => 'active',
-    'active5' => '',
+    'menu' => $menu,
     'content' => $content
 ]);
 
