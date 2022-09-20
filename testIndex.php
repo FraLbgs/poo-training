@@ -2,16 +2,18 @@
 
 spl_autoload_register();
 use App\Objects\Template;
+use App\Objects\School;
+use App\Objects\PrimarySchool;
+use App\Objects\MiddleSchool;
+use App\Objects\HighSchool;
 
-$page3 = new Template("layout.html");
+$page5 = new Template("layout.html");
 $question1 = new Template("question.html");
 $content = '';
 
 $datasQ1 = [
     'num' => 1,
-    'enonce' => 'Créer les dossiers "App/Objects" et y ajouter un fichier PHP pour chacune des classes créées lors des exercices précédents.
-    <br>
-    Assurer le fonctionnement du code des exercices précédents.',
+    'enonce' => 'Créer une classe permettant de gérer l\'affichage d\'un template HTML en lisant un fichier grace à la fonction file_get_contents().',
     'answer' => ''
 ];
 
@@ -23,9 +25,7 @@ $question2 = new Template("question.html");
 
 $datasQ2 = [
     'num' => 2,
-    'enonce' => 'Ajouter les classes dans un namespace.
-    <br>
-    Automatiser l\'import des fichiers en utilisant les namespaces.',
+    'enonce' => 'Créer une classe permettant de gérer l\'affichage des pages de ce mini-site.',
     'answer' => ''
 ];
 
@@ -37,7 +37,7 @@ $question3 = new Template("question.html");
 
 $datasQ3 = [
     'num' => 3,
-    'enonce' => 'Mutualiser le code commun des 2 classes grâce à l\'héritage.',
+    'enonce' => 'Créer une classe permettant de gérer le menu de navigation de ce site.',
     'answer' => ''
 ];
 
@@ -45,17 +45,29 @@ $content.=$question3->buildLayout($datasQ3);
 
 /*******************************************************/
 
+$question4 = new Template("question.html");
+
+$datasQ4 = [
+    'num' => 4,
+    'enonce' => 'Créer une classe permettant de gérer l\'affichage des questions sur ce site.',
+    'answer' => ''
+];
+
+$content.=$question4->buildLayout($datasQ4);
+
+/*******************************************************/
+
 $datasL = [
-    'title' => 'POO - On réorganise le code',
-    'h1' => 'POO - On réorganise le code',
+    'title' => 'POO - Des vues',
+    'h1' => 'POO - Des vues',
     'active1' => '',
     'active2' => '',
-    'active3' => 'active',
+    'active3' => '',
     'active4' => '',
-    'active5' => '',
+    'active5' => 'active',
     'content' => $content
 ];
 
-$page3->setDatas($datasL);
-echo $page3->buildLayout($datasL);
+$page5->setDatas($datasL);
+echo $page5->buildLayout($datasL);
 

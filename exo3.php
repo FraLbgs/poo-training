@@ -1,51 +1,48 @@
 <?php
 
 spl_autoload_register();
-use App\Objects\Template;
+use App\Views\Page;
+use App\Views\Question;
 
-$page3 = new Template("layout.html");
-$question1 = new Template("question.html");
 $content = '';
 
-$datasQ1 = [
+$question1 = new Question([
     'num' => 1,
     'enonce' => 'Créer les dossiers "App/Objects" et y ajouter un fichier PHP pour chacune des classes créées lors des exercices précédents.
     <br>
     Assurer le fonctionnement du code des exercices précédents.',
     'answer' => ''
-];
+]);
 
-$content.=$question1->buildLayout($datasQ1);
+
+$content.=$question1->getHtml();
 
 /*******************************************************/
 
-$question2 = new Template("question.html");
-
-$datasQ2 = [
+$question2 = new Question([
     'num' => 2,
     'enonce' => 'Ajouter les classes dans un namespace.
     <br>
     Automatiser l\'import des fichiers en utilisant les namespaces.',
     'answer' => ''
-];
+]);
 
-$content.=$question2->buildLayout($datasQ2);
+$content.=$question2->getHtml();
 
 /*******************************************************/
 
-$question3 = new Template("question.html");
-
-$datasQ3 = [
+$question3 = new Question([
     'num' => 3,
     'enonce' => 'Mutualiser le code commun des 2 classes grâce à l\'héritage.',
     'answer' => ''
-];
+]);
 
-$content.=$question3->buildLayout($datasQ3);
+
+$content.=$question3->getHtml();
 
 /*******************************************************/
 
-$datasL = [
+$page3 = new Page([
     'title' => 'POO - On réorganise le code',
     'h1' => 'POO - On réorganise le code',
     'active1' => '',
@@ -54,8 +51,6 @@ $datasL = [
     'active4' => '',
     'active5' => '',
     'content' => $content
-];
+]);
 
-$page3->setDatas($datasL);
-echo $page3->buildLayout($datasL);
-
+$page3->display();

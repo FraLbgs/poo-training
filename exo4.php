@@ -1,109 +1,85 @@
 <?php
+
 spl_autoload_register();
+use App\Views\Page;
+use App\Views\Question;
 use App\Objects\School;
 use App\Objects\PrimarySchool;
 use App\Objects\MiddleSchool;
 use App\Objects\HighSchool;
 
-?>
+$content = '';
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>POO - Des écoles</title>
-</head>
+$school1 = new School("George Sand", "Le Havre");
+$school2 = new School("François 1er", "Paris");
 
-<body class="dark-template">
-    <div class="container">
-        <header class="header">
-            <h1 class="main-ttl">POO - Des écoles</h1>
-            <nav class="main-nav">
-                <ul class="main-nav-list">
-                    <li><a href="index.php" class="main-nav-link">Des élèves</a></li>
-                    <li><a href="exo2.php" class="main-nav-link">Des profs</a></li>
-                    <li><a href="exo3.php" class="main-nav-link">On s'organise</a></li>
-                    <li><a href="exo4.php" class="main-nav-link active">Des écoles</a></li>
-                    <li><a href="exo5.php" class="main-nav-link">Des vues</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <!-- QUESTION 1 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 1</h2>
-            <p class="exercice-txt"> 
-                Créer une classe permettant de gérer des écoles avec un nom d'école et une ville.
-                <br>
-                Créer 2 écoles et afficher leurs proprités.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                // $school1 = new School("George Sand", "Le Havre");
-                // $school2 = new School("François 1er", "Paris");
-                // echo "Nom école 1 : ".$school1->getName().", ville : ".$school1->getCity().".<br>";
-                // echo "Nom école 2 : ".$school2->getName().", ville : ".$school2->getCity().".";
-                ?>
-            </div>
-        </section>
-        
-        
-        <!-- QUESTION 2 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 2</h2>
-            <p class="exercice-txt"> 
-                Créer 3 classes correspondants aux 3 types d'école suivants : primaire, des collège et des lycée.
-                <br>
-                Pour chaque type d'école définir la liste des niveaux scolaires qu'il prend en charge (ex de niveau scolaire : "CP", "CM2", "5ème", "Terminale", ...).
-                <br>
-                Créer une école de chaque type.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                    $ps = new PrimarySchool("George Sand", "Le Havre");
-                    $ms = new MiddleSchool("Gérard Philippe", "Strasbourg");
-                    $hs = new HighSchool("François 1er", "Paris");
-                    var_dump($ps->getGrades());
-                ?>
-            </div>
-        </section>
+$ps = new PrimarySchool("George Sand", "Le Havre");
+$ms = new MiddleSchool("Gérard Philippe", "Strasbourg");
+$hs = new HighSchool("François 1er", "Paris");
 
-        
-        <!-- QUESTION 3 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 3</h2>
-            <p class="exercice-txt"> 
-                Créer une méthode permettant d'interroger un type d'école pour savoir s'il prend en charge un niveu scolaire.
-                <br>
-                Tester la méthode créée.
-            </p>
-            <div class="exercice-sandbox">
-                <?php
-                echo ($ps->isGradeInSchool("5ème"));
-                echo ($ms->isGradeInSchool("5ème"));
-                echo ($hs->isGradeInSchool("5ème"));
-                ?>
-            </div>
-        </section>
+$question1 = new Question([
+    'num' => 1,
+    'enonce' => 'Créer une classe permettant de gérer des écoles avec un nom d\'école et une ville.
+    <br>
+    Créer 2 écoles et afficher leurs proprités.',
+    'answer' => "Nom école 1 : ".$school1->getName().", ville : ".$school1->getCity().".<br>
+    Nom école 2 : ".$school2->getName().", ville : ".$school2->getCity()."."
+]);
 
-        <!-- QUESTION 4 -->
-        <section class="exercice">
-            <h2 class="exercice-ttl">Question 4</h2>
-            <p class="exercice-txt"> 
-                Remplacer les propriétés "école" des élèves et des professeurs par une instance de classe créée. (string devient ecole)
-                <br>
-                Ajuster le code de toutes les classes afin que tous les exercices précédents fonctionnent à nouveau.
-            </p>
-            <div class="exercice-sandbox">
-                
-            </div>
-        </section>
-    </div>
-    <div class="copyright">© Guillaume Belleuvre, 2022 - DWWM Le Havre</div>
-</body>
-</html>
+$content.=$question1->getHtml();
+
+/*******************************************************/
+
+$question2 = new Question([
+    'num' => 2,
+    'enonce' => 'Créer 3 classes correspondants aux 3 types d\'école suivants : primaire, des collège et des lycée.
+    <br>
+    Pour chaque type d\'école définir la liste des niveaux scolaires qu\'il prend en charge (ex de niveau scolaire : "CP", "CM2", "5ème", "Terminale", ...).
+    <br>
+    Créer une école de chaque type.',
+    'answer' => ''
+]);
+
+$content.=$question2->getHtml();
+
+/*******************************************************/
+
+$question3 = new Question([
+    'num' => 3,
+    'enonce' => 'Créer une méthode permettant d\'interroger un type d\'école pour savoir s\'il prend en charge un niveu scolaire.
+    <br>
+    Tester la méthode créée.',
+    'answer' => $ps->isGradeInSchool("5ème").' '.
+    $ms->isGradeInSchool("5ème").' '.
+    $hs->isGradeInSchool("5ème")
+]);
+
+$content.=$question3->getHtml();
+
+/*******************************************************/
+
+$question4 = new Question([
+    'num' => 4,
+    'enonce' => 'Remplacer les propriétés "école" des élèves et des professeurs par une instance de classe créée. (string devient ecole)
+    <br>
+    Ajuster le code de toutes les classes afin que tous les exercices précédents fonctionnent à nouveau.',
+    'answer' => ''
+]);
+
+$content.=$question4->getHtml();
+
+/*******************************************************/
+
+$page4 = new Page([
+    'title' => 'POO - Des écoles',
+    'h1' => 'POO - Des écoles',
+    'active1' => '',
+    'active2' => '',
+    'active3' => '',
+    'active4' => 'active',
+    'active5' => '',
+    'content' => $content
+]);
+
+$page4->display();

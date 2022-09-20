@@ -29,11 +29,11 @@
             $this->city = $city;
         }
 
-        public static function getGrades() :array {
+        public function getGrades() :array {
             return static::$grades;
         }
 
-        public static function isGradeInSchool(string $name) :bool {
+        public function isGradeInSchool(string $name) :bool {
             return in_array($name, static::$grades);
         }
     }
